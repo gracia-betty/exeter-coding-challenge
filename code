@@ -1,0 +1,15 @@
+fin = open("t8.shakespeare.txt", "rt")
+fout = open("t8.shakespeare.translated.txt", "wt")
+for word in fin:
+    word=word.lower()
+    for a in word.split():
+        import csv
+        with open('french_dictionary.csv') as csv_file:
+            reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in reader:
+                if line_count == 0:
+                    line_count += 1
+                    fout.write(a.replace(row[0], row[1]))              
+fin.close()
+fout.close()
